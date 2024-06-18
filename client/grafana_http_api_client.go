@@ -46,7 +46,6 @@ import (
 	"github.com/grafana/grafana-openapi-client-go/client/ldap_debug"
 	"github.com/grafana/grafana-openapi-client-go/client/library_elements"
 	"github.com/grafana/grafana-openapi-client-go/client/licensing"
-	"github.com/grafana/grafana-openapi-client-go/client/migrations"
 	"github.com/grafana/grafana-openapi-client-go/client/org"
 	"github.com/grafana/grafana-openapi-client-go/client/org_invites"
 	"github.com/grafana/grafana-openapi-client-go/client/org_preferences"
@@ -140,7 +139,6 @@ func New(transport runtime.ClientTransport, cfg *TransportConfig, formats strfmt
 	cli.LDAPDebug = ldap_debug.New(transport, formats)
 	cli.LibraryElements = library_elements.New(transport, formats)
 	cli.Licensing = licensing.New(transport, formats)
-	cli.Migrations = migrations.New(transport, formats)
 	cli.Org = org.New(transport, formats)
 	cli.OrgInvites = org_invites.New(transport, formats)
 	cli.OrgPreferences = org_preferences.New(transport, formats)
@@ -284,8 +282,6 @@ type GrafanaHTTPAPI struct {
 
 	Licensing licensing.ClientService
 
-	Migrations migrations.ClientService
-
 	Org org.ClientService
 
 	OrgInvites org_invites.ClientService
@@ -360,7 +356,6 @@ func (c *GrafanaHTTPAPI) SetTransport(transport runtime.ClientTransport) {
 	c.LDAPDebug.SetTransport(transport)
 	c.LibraryElements.SetTransport(transport)
 	c.Licensing.SetTransport(transport)
-	c.Migrations.SetTransport(transport)
 	c.Org.SetTransport(transport)
 	c.OrgInvites.SetTransport(transport)
 	c.OrgPreferences.SetTransport(transport)
